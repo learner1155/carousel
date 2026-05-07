@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recommended Consumables | Global Industrial</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Kanit:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <style>
+    /* =============================================
+       RESET & CUSTOM PROPERTIES
+    ============================================= */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --primary: #E8612C;
+      --primary-dark: #C44E20;
+      --primary-light: #FF7A42;
+      --secondary: #1A2744;
+      --accent: #FFB800;
+      --white: #FFFFFF;
+      --off-white: #F3F4F8;
+      --light-gray: #E9ECEF;
+      --mid-gray: #6C757D;
+      --dark-gray: #343A40;
+      --text: #1A1A2E;
+
+      --max-width: 1440px;
+      --container: 1368px;
+
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+      --trans: all 0.35s var(--ease);
+
+      --shadow-xs: 0 1px 4px rgba(0, 0, 0, 0.06);
+      --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.08);
+      --shadow-md: 0 8px 28px rgba(0, 0, 0, 0.12);
+      --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.16);
+
+      --r-sm: 8px;
+      --r-md: 14px;
+      --r-lg: 20px;
+      --r-xl: 28px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: #eef0f5;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 48px 16px;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    /* =============================================
+       OUTER WRAPPER (max-width guard)
+    ============================================= */
+    .page-wrap {
+      width: 100%;
+      max-width: var(--max-width);
+    }
+
+    /* =============================================
+       CONTAINER
+    ============================================= */
+    .container {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 36px;
+    }
+
+    /* =============================================
+       SECTION
+    ============================================= */
+    .rc-section {
+      background: var(--white);
+      border-radius: var(--r-xl);
+      padding: 52px 0 60px;
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* =============================================
+       TOP ROW: Title block + Total Price block
+    ============================================= */
+    .rc-top-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 32px;
+      margin-bottom: 44px;
+      flex-wrap: wrap;
+    }
+
+    /* --- Title Block --- */
+    .rc-title-block {
+      flex: 1;
+      min-width: 260px;
+    }
+
+    .rc-title-block h2 {
+      font-family: 'Kanit', sans-serif;
+      font-size: clamp(26px, 3vw, 42px);
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.1;
+      margin-bottom: 14px;
+      letter-spacing: -0.3px;
+    }
+
+    .rc-title-block p {
+      font-size: 15px;
+      color: var(--mid-gray);
+      line-height: 1.75;
+      max-width: 540px;
+    }
+
+    /* --- Total Price Block --- */
+    .rc-price-block {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .rc-price-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 2px;
+    }
+
+    .rc-total-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--mid-gray);
+    }
+
+    .rc-total-value {
+      font-family: 'Kanit', sans-serif;
+      font-size: clamp(32px, 3.5vw, 46px);
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1;
+      transition: var(--trans);
+    }
+
+    .rc-total-value.bump {
+      transform: scale(1.08);
+      color: var(--primary);
+    }
+
+    .rc-add-all-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 28px;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: var(--r-sm);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      cursor: pointer;
+      transition: var(--trans);
+      white-space: nowrap;
+      margin-top: 2px;
+    }
+
+    .rc-add-all-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(232, 97, 44, 0.38);
+    }
+
+    .rc-add-all-btn:active {
+      transform: translateY(0);
+    }
+
+    .rc-add-all-btn svg {
+      flex-shrink: 0;
+    }
+    
+    /* Success state — all items selected */
+    .rc-add-all-btn.all-added {
+      background: #16a34a;
+      cursor: default;
+    }
+
+    .rc-add-all-btn.all-added:hover {
+      background: #15803d;
+      transform: none;
+      box-shadow: none;
+    }
+
+    /* =============================================
+       CAROUSEL CONTAINER (gray rounded box)
+    ============================================= */
+    .rc-carousel-box {
+      background: var(--off-white);
+      border-radius: var(--r-lg);
+      padding: 36px 32px 32px;
+    }
+
+    /* --- Slider outer (arrows + viewport) --- */
+    .rc-slider-row {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .rc-slider-viewport {
+      overflow: hidden;
+      flex: 1;
+      min-width: 0;
+      /* padding-top gives cards room to translateY upward on hover without being clipped */
+      padding-top: 10px;
+      margin-top: -10px;
+      padding-bottom: 6px;
+      margin-bottom: -6px;
+      padding-left: 5px;
+      padding-right: 16px;
+    }
+
+    /* --- Track --- */
+    .rc-track {
+      display: flex;
+      align-items: stretch;
+      transition: transform 0.55s var(--ease);
+      will-change: transform;
+    }
+
+    /* =============================================
+       PRODUCT CARD
+    ============================================= */
+    .rc-card {
+      flex-shrink: 0;
+      background: var(--white);
+      border-radius: var(--r-md);
+      border: 1.5px solid var(--light-gray);
+      overflow: hidden;
+      position: relative;
+      transition: var(--trans);
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .rc-card:hover {
+      box-shadow: var(--shadow-sm);
+      transform: translateY(-5px);
+      border-color: transparent;
+    }
+
+    .rc-card.selected {
+      border-color: var(--primary);
+      /* box-shadow: 0 0 0 3px rgba(232, 97, 44, 0.12), var(--shadow-sm); */
+    }
+
+    /* --- Checkbox --- */
+    .rc-check-wrap {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 3;
+    }
+
+    .rc-check-input {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 26px;
+      height: 26px;
+      border: 2px solid #c1c4c8;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.92);
+      cursor: pointer;
+      transition: var(--trans);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .rc-check-input:hover {
+      border-color: var(--primary);
+    }
+
+    .rc-check-input:checked {
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .rc-check-input:checked::after {
+      content: '';
+      display: block;
+      width: 6px;
+      height: 11px;
+      border: 2.5px solid #fff;
+      border-top: none;
+      border-left: none;
+      transform: rotate(45deg) translateY(-1px);
+    }
+
+    /* --- Card image --- */
+    .rc-card-img-wrap {
+      overflow: hidden;
+      height: 210px;
+      display: flex;
+      position: relative;
+      /* background: #f8f9fc; */
+      background: #ffffff;
+    }
+
+    .rc-card-img {
+      width: 82%;
+      height: 82%;
+      margin: auto;
+      object-fit: contain;
+      display: block;
+      transition: transform 0.52s var(--ease);
+    }
+
+    .rc-card:hover .rc-card-img {
+      transform: scale(1.07);
+    }
+    .set-plier-alignment{
+     width: 80%;
+        height: auto;
+    }
+    /* --- Card body --- */
+    .rc-card-body {
+      padding: 13px 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      flex: 1;
+    }
+
+    .rc-card-name {
+      /* font-family: 'Kanit', sans-serif; */
+      font-family: 'Inter', sans-serif;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--secondary);
+      line-height: 1.42;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: 58px;
+    }
+
+    .rc-card-price {
+      font-family: 'Kanit', sans-serif;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--primary);
+      margin-top: auto;
+      padding-top: 4px;
+    }
+
+
+
+    /* =============================================
+       ARROW BUTTONS
+    ============================================= */
+    .rc-arrow {
+      width: 44px;
+      height: 44px;
+      border: 1.5px solid var(--light-gray);
+      border-radius: 50%;
+      background: var(--white);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: var(--trans);
+      color: var(--text);
+      flex-shrink: 0;
+      box-shadow: var(--shadow-xs);
+    }
+
+    .rc-arrow:hover:not(:disabled) {
+      border-color: var(--primary);
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(232, 97, 44, 0.3);
+    }
+
+    .rc-arrow:active:not(:disabled) {
+      transform: scale(0.93);
+    }
+
+    .rc-arrow:disabled {
+      opacity: 1;
+      cursor: not-allowed;
+      background: #e8eaee;
+      border-color: #d0d4db;
+      color: #b0b8c4;
+      box-shadow: none;
+    }
+
+    /* =============================================
+       DOTS
+    ============================================= */
+    .rc-dots {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 7px;
+      margin-top: 26px;
+    }
+
+    .rc-dot {
+      height: 7px;
+      width: 24px;
+      border-radius: 4px;
+      background: #d1d5db;
+      border: none;
+      cursor: pointer;
+      transition: var(--trans);
+      padding: 0;
+    }
+
+    .rc-dot.active {
+      background: var(--primary);
+      width: 36px;
+    }
+
+    .rc-dot:hover:not(.active) {
+      background: #9ca3af;
+    }
+
+    /* =============================================
+       TOAST NOTIFICATION
+    ============================================= */
+    .rc-toast {
+      position: fixed;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--secondary);
+      color: #fff;
+      padding: 13px 24px;
+      border-radius: var(--r-sm);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      opacity: 0;
+      transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+      pointer-events: none;
+      z-index: 999;
+      white-space: nowrap;
+      box-shadow: var(--shadow-md);
+    }
+
+    .rc-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* =============================================
+       RESPONSIVE
+    ============================================= */
+
+    /* ── 1024px: tablet landscape ── */
+    @media (max-width: 1024px) {
+      .container {
+        padding: 0 28px;
+      }
+      .rc-carousel-box {
+        padding: 28px 24px;
+      }
+    }
+
+    /* ── 768px: tablet portrait ── */
+    @media (max-width: 768px) {
+      body {
+        padding: 24px 12px;
+        align-items: flex-start;
+      }
+      .container {
+        padding: 0 18px;
+      }
+      .rc-section {
+        padding: 36px 0 44px;
+        border-radius: var(--r-lg);
+      }
+      .rc-top-row {
+        flex-direction: column;
+        gap: 18px;
+        margin-bottom: 28px;
+      }
+      .rc-title-block h2 {
+        margin-bottom: 10px;
+      }
+      .rc-title-block p {
+        font-size: 14px;
+        line-height: 1.65;
+      }
+      /* Price row: label+value left, button right — stays inline */
+      .rc-price-block {
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .rc-price-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .rc-total-label {
+        font-size: 10px;
+        letter-spacing: 1.4px;
+      }
+      .rc-total-value {
+        font-size: 30px;
+      }
+      .rc-carousel-box {
+        padding: 18px 14px 20px;
+        border-radius: var(--r-md);
+      }
+      .rc-slider-row {
+        gap: 10px;
+      }
+      .rc-arrow {
+        width: 38px;
+        height: 38px;
+      }
+      .rc-card-img-wrap {
+        height: 160px;
+      }
+      .rc-dots {
+        margin-top: 18px;
+        gap: 6px;
+      }
+      /* Bigger tap area on dots */
+      .rc-dot {
+        height: 8px;
+        /* min-height: 28px; */
+        display: flex;
+        align-items: center;
+        background: none;
+        position: relative;
+      }
+      .rc-dot::after {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 7px;
+        border-radius: 4px;
+        background: #d1d5db;
+        transition: var(--trans);
+      }
+      .rc-dot.active::after {
+        background: var(--primary);
+      }
+      .rc-dot:hover:not(.active)::after {
+        background: #9ca3af;
+      }
+    }
+
+    /* ── 480px: mobile ── */
+    @media (max-width: 480px) {
+      body {
+        padding: 16px 8px;
+      }
+      .container {
+        padding: 0 14px;
+      }
+      .rc-section {
+        padding: 28px 0 36px;
+        border-radius: var(--r-md);
+        box-shadow: var(--shadow-md);
+      }
+      .rc-title-block h2 {
+        font-size: 24px;
+      }
+      /* Hide arrows on mobile — swipe + dots handle navigation */
+      .rc-arrow {
+        display: none;
+      }
+      .rc-add-all-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 14px 20px;
+      }
+      .rc-card-img-wrap {
+        height: 140px;
+      }
+      .rc-card-body {
+        padding: 11px 12px 14px;
+      }
+      .rc-card-name {
+        font-size: 13px;
+        min-height: 54px;
+      }
+      .rc-card-price {
+        font-size: 15px;
+      }
+      .rc-carousel-box {
+        padding: 14px 10px 16px;
+        border-radius: var(--r-sm);
+      }
+      .rc-dots {
+        margin-top: 14px;
+      }
+      /* Toast — allow wrap, don't overflow screen */
+      .rc-toast {
+        white-space: normal;
+        text-align: center;
+        width: 90vw;
+        max-width: 340px;
+        font-size: 13px;
+        padding: 12px 18px;
+        bottom: 20px;
+      }
+    }
+
+    /* ── 360px: small phones ── */
+    @media (max-width: 360px) {
+      .container {
+        padding: 0 10px;
+      }
+      .rc-title-block h2 {
+        font-size: 21px;
+      }
+      .rc-card-img-wrap {
+        height: 120px;
+      }
+      .rc-card-name {
+        font-size: 12px;
+        -webkit-line-clamp: 2;
+        min-height: 36px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page-wrap">
+    <section class="rc-section">
+      <div class="container">
+
+        <!-- ── TOP ROW ── -->
+        <div class="rc-top-row">
+          <div class="rc-title-block">
+            <h2>Recommended Consumables</h2>
+            <p>Hand-picked best-sellers — engineered for performance, durability, and value. Select any items below
+              and add them to your cart as a bundle.</p>
+          </div>
+
+          <div class="rc-price-block">
+            <div class="rc-price-meta">
+              <span class="rc-total-label">Total Price</span>
+              <span class="rc-total-value" id="rcTotalValue">$0.00</span>
+            </div>
+            <button class="rc-add-all-btn" id="rcAddAllBtn" onclick="rcAddAllToCart()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="9" cy="21" r="1" />
+                <circle cx="20" cy="21" r="1" />
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+              </svg>
+              Add All To Cart
+            </button>
+          </div>
+        </div>
+
+        <!-- ── CAROUSEL BOX ── -->
+        <div class="rc-carousel-box">
+          <div class="rc-slider-row">
+            <!-- Prev arrow -->
+            <button class="rc-arrow" id="rcPrev" aria-label="Previous products" disabled>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+            </button>
+
+            <!-- Viewport -->
+            <div class="rc-slider-viewport" id="rcViewport">
+              <div class="rc-track" id="rcTrack">
+                <!-- Cards rendered by JS -->
+              </div>
+            </div>
+
+            <!-- Next arrow -->
+            <button class="rc-arrow" id="rcNext" aria-label="Next products">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </button>
+          </div>
+
+          <!-- Dots -->
+          <div class="rc-dots" id="rcDots"></div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <!-- Toast -->
+  <div class="rc-toast" id="rcToast"></div>
+
+  <script>
+    /* =============================================
+       PRODUCT DATA — sourced from index.html FP_PRODUCTS
+    ============================================= */
+    const PRODUCTS = [
+      {
+        id: 1,
+        name: 'Global Industrial™ Heavy-Duty Corrugated Cardboard Shipping Box, Single Wall, 12×10×8 in, Pack of 25',
+        price: 299.99,
+        orig: 374.99,
+        cat: 'Packaging & Shipping',
+        img: './Assets/Images/box.jpg'
+      },
+      {
+        id: 2,
+        name: 'Global Industrial™ Premium Protective Wrapping Roll, 24" Wide x 500 ft, Heavy-Duty Poly',
+        price: 489.00,
+        orig: null,
+        cat: 'Packaging Supplies',
+        img: './Assets/Images/wrapper.jpg'
+      },
+      {
+        id: 3,
+        name: 'Global Industrial™ Type I Safety Hard Hat, 4-Point Ratchet Suspension, Orange, ANSI Z89.1',
+        price: 349.00,
+        orig: 420.00,
+        cat: 'Head Protection',
+        img: './Assets/Images/helmate.jpg'
+      },
+      {
+        id: 4,
+        name: 'Global Industrial™ Industrial Adhesive Tape Roll, 2" x 60 Yds, High-Tack Acrylic, Orange',
+        price: 89.99,
+        orig: null,
+        cat: 'Tapes & Adhesives',
+        img: './Assets/Images/tape.jpg'
+      },
+      {
+        id: 5,
+        name: 'Global Industrial™ 8" Combination Pliers, Drop Forged Steel, Insulated Comfort-Grip Handles',
+        price: 199.00,
+        orig: 249.00,
+        cat: 'Hand Tools',
+        img: './Assets/Images/plier.jpg'
+      },
+      {
+        id: 6,
+        name: 'Global Industrial™ ANSI Class 2 Hi-Vis Safety Vest with Reflective Strips, Lime Green, M–3XL',
+        price: 149.99,
+        orig: null,
+        cat: 'Safety Apparel',
+        img: './Assets/Images/safety-vest.jpg'
+      },
+      {
+        id: 7,
+        name: 'Global Industrial™ Heavy-Duty Waterproof Work Gloves, Insulated, Blue, One Size Fits Most',
+        price: 599.00,
+        orig: null,
+        cat: 'Hand Protection',
+        img: './Assets/Images/gloves.jpg'
+      },
+      {
+        id: 8,
+        name: 'Global Industrial™ Economy Corrugated Mailer Box, 200 lb Test, 6×6×6 in, Pack of 50',
+        price: 59.99,
+        orig: 79.99,
+        cat: 'Packaging & Shipping',
+        img: './Assets/Images/box.jpg'
+      }
+    ];
+
+    const CART_ICON = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>`;
+    const CHECK_ICON = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+
+    function rcUpdateAddAllBtn() {
+      const btn = document.getElementById('rcAddAllBtn');
+      if (!btn) return;
+      const allSelected = PRODUCTS.every(p => rcChecked.has(p.id));
+      if (allSelected) {
+        btn.classList.add('all-added');
+        btn.innerHTML = CHECK_ICON + ' All Added';
+      } else {
+        btn.classList.remove('all-added');
+        btn.innerHTML = CART_ICON + ' Add All To Cart';
+      }
+    }
+
+    /* =============================================
+       STATE
+    ============================================= */
+    let rcIndex = 0;
+    let rcVisible = 4;
+    const rcChecked = new Set();
+
+    function rcGetCardGap() {
+      return window.innerWidth <= 480 ? 12 : window.innerWidth <= 768 ? 16 : 20;
+    }
+
+    /* =============================================
+       HELPERS
+    ============================================= */
+    function rcGetVisible() {
+      const w = window.innerWidth;
+      if (w >= 1200) return 4;
+      if (w >= 900)  return 3;
+      if (w >= 580)  return 2;
+      return 1;
+    }
+
+    function rcCalcTotal() {
+      let total = 0;
+      rcChecked.forEach(id => {
+        const p = PRODUCTS.find(x => x.id === id);
+        if (p) total += p.price;
+      });
+      return total;
+    }
+
+    /* Update text + animate — only call this on checkbox interaction */
+    function rcUpdateTotal() {
+      const el = document.getElementById('rcTotalValue');
+      if (!el) return;
+      el.textContent = '$' + rcCalcTotal().toFixed(2);
+      el.classList.add('bump');
+      setTimeout(() => el.classList.remove('bump'), 380);
+    }
+
+    /* Update text silently (no animation) — used during slide navigation */
+    function rcUpdateTotalSilent() {
+      const el = document.getElementById('rcTotalValue');
+      if (!el) return;
+      el.textContent = '$' + rcCalcTotal().toFixed(2);
+    }
+
+    function rcShowToast(msg) {
+      const t = document.getElementById('rcToast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2400);
+    }
+
+    /* =============================================
+       RENDER
+    ============================================= */
+    function rcRender(animateTotal = false) {
+      const track    = document.getElementById('rcTrack');
+      const viewport = document.getElementById('rcViewport');
+      if (!track || !viewport) return;
+
+      rcVisible = rcGetVisible();
+      const _cs = window.getComputedStyle(viewport);
+      const totalW = viewport.offsetWidth - parseFloat(_cs.paddingLeft) - parseFloat(_cs.paddingRight) + 12;
+
+      /*
+        Layout formula using a fixed gap between cards:
+          totalW = rcVisible * cardW + (rcVisible - 1) * CARD_GAP
+          cardW  = (totalW - (rcVisible - 1) * CARD_GAP) / rcVisible
+          step   = cardW + CARD_GAP
+      */
+      const CARD_GAP  = rcGetCardGap();
+      const gapCount  = rcVisible - 1;
+      const cardW    = Math.floor((totalW - gapCount * CARD_GAP) / rcVisible);
+      const step     = cardW + CARD_GAP;
+      const maxIdx   = Math.max(0, PRODUCTS.length - rcVisible);
+      rcIndex        = Math.min(rcIndex, maxIdx);
+
+      /* Build card HTML */
+      let html = '';
+      PRODUCTS.forEach((p, i) => {
+        const checked = rcChecked.has(p.id);
+        const marginRight = i < PRODUCTS.length - 1 ? `margin-right:${CARD_GAP}px;` : '';
+
+        const imgClass = p.img === './Assets/Images/plier.jpg' ? 'rc-card-img set-plier-alignment' : 'rc-card-img';
+
+        html += `
+          <div class="rc-card${checked ? ' selected' : ''}"
+               style="width:${cardW}px;${marginRight}"
+               data-id="${p.id}"
+               onclick="rcCardClick(event, ${p.id})">
+            <div class="rc-check-wrap">
+              <input
+                type="checkbox"
+                class="rc-check-input"
+                data-id="${p.id}"
+                ${checked ? 'checked' : ''}
+                onclick="event.stopPropagation()"
+                onchange="rcToggleCheck(${p.id}, this)"
+                aria-label="Select ${p.name}"
+              />
+            </div>
+            <div class="rc-card-img-wrap">
+              <img class="${imgClass}" src="${p.img}" alt="${p.name}" loading="lazy" />
+            </div>
+            <div class="rc-card-body">
+              <div class="rc-card-name">${p.name}</div>
+              <div class="rc-card-price">$${p.price.toFixed(2)}</div>
+            </div>
+          </div>`;
+      });
+
+      track.innerHTML = html;
+      track.style.transform = `translateX(-${rcIndex * step}px)`;
+
+      /* Arrows */
+      document.getElementById('rcPrev').disabled = rcIndex === 0;
+      document.getElementById('rcNext').disabled = rcIndex >= maxIdx;
+
+      /* Dots */
+      const dotsEl = document.getElementById('rcDots');
+      dotsEl.innerHTML = Array.from({ length: maxIdx + 1 }, (_, i) =>
+        `<button class="rc-dot${i === rcIndex ? ' active' : ''}"
+                 onclick="rcGoTo(${i})"
+                 aria-label="Go to slide ${i + 1}"></button>`
+      ).join('');
+
+      /* Only animate total when triggered by a checkbox interaction */
+      if (animateTotal) {
+        rcUpdateTotal();
+      } else {
+        rcUpdateTotalSilent();
+      }
+
+      rcUpdateAddAllBtn();
+    }
+
+    /* =============================================
+       INTERACTIONS
+    ============================================= */
+    /** Toggle checkbox by clicking anywhere on the card */
+    function rcCardClick(event, id) {
+      const checkbox = event.currentTarget.querySelector('.rc-check-input');
+      if (event.target === checkbox) return; // already handled by onchange
+      checkbox.checked = !checkbox.checked;
+      rcToggleCheck(id, checkbox);
+    }
+
+    function rcToggleCheck(id, checkbox) {
+      if (checkbox.checked) {
+        rcChecked.add(id);
+        checkbox.closest('.rc-card').classList.add('selected');
+      } else {
+        rcChecked.delete(id);
+        checkbox.closest('.rc-card').classList.remove('selected');
+      }
+      rcUpdateTotal();   // animate only here
+      rcUpdateAddAllBtn();
+    }
+
+    function rcGoTo(idx) {
+      const maxIdx = Math.max(0, PRODUCTS.length - rcVisible);
+      rcIndex = Math.max(0, Math.min(idx, maxIdx));
+      rcRender();
+    }
+
+    function rcAddAllToCart() {
+      const allSelected = PRODUCTS.every(p => rcChecked.has(p.id));
+      if (allSelected) {
+        // All items already in cart — just confirm, never deselect
+        rcShowToast('All items are already in your cart!');
+        return;
+      }
+      PRODUCTS.forEach(p => rcChecked.add(p.id));
+      rcShowToast('All ' + PRODUCTS.length + ' items added to cart!');
+      rcRender(true);
+      rcUpdateAddAllBtn();
+    }
+
+    /* Arrow buttons */
+    document.getElementById('rcPrev').addEventListener('click', () => rcGoTo(rcIndex - 1));
+    document.getElementById('rcNext').addEventListener('click', () => rcGoTo(rcIndex + 1));
+
+    /* Keyboard navigation */
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft')  rcGoTo(rcIndex - 1);
+      if (e.key === 'ArrowRight') rcGoTo(rcIndex + 1);
+    });
+
+    /* Touch / swipe support */
+    (function () {
+      const vp = document.getElementById('rcViewport');
+      let startX = 0;
+      vp.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+      vp.addEventListener('touchend', e => {
+        const dx = e.changedTouches[0].clientX - startX;
+        if (Math.abs(dx) > 40) rcGoTo(rcIndex + (dx < 0 ? 1 : -1));
+      }, { passive: true });
+    })();
+
+    /* Resize */
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(rcRender, 150);
+    });
+
+    /* Init */
+    rcRender();
+    rcUpdateAddAllBtn();
+  </script>
+</body>
+
+</html>
